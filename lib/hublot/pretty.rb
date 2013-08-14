@@ -16,17 +16,17 @@ module Hublot
       "Sunday" => 7
     }
 
-    return just_now     if just_now?
-    return a_second_ago if a_second_ago?
-    return seconds_ago  if seconds_ago?
-    return a_minute_ago if a_minute_ago?
-    return minutes_ago  if minutes_ago?
-    return an_hour_ago  if an_hour_ago?
-    return today        if is_today?
-    return yesterday    if is_yesterday?
-    return this_week    if this_week?
+    return just_now.downcase     if just_now?
+    return a_second_ago.downcase if a_second_ago?
+    return seconds_ago.downcase  if seconds_ago?
+    return a_minute_ago.downcase if a_minute_ago?
+    return minutes_ago.downcase  if minutes_ago?
+    return an_hour_ago.downcase  if an_hour_ago?
+    return today.downcase        if is_today?
+    return yesterday.downcase    if is_yesterday?
+    return this_week.downcase    if this_week?
     #return last_week    if last_week?
-    return datetimefiesta
+    return datetimefiesta.downcase
   end
 
 private
@@ -91,7 +91,7 @@ private
   end
 
   def yesterday
-    "Yesterday,#{timeify}"
+    "Yesterday, #{timeify}"
   end
 
   def is_yesterday?
@@ -99,20 +99,20 @@ private
   end
 
   def this_week
-    "#{@created},#{timeify}"
+    "#{@created}, #{timeify}"
   end
 
   def this_week?
     @expired <= 604800 && @days[@today] - @days[@created] != 0 
   end
 
-  def last_week
-    "Last #{@created} at#{timeify}"
-  end
+  #def last_week
+  #  "Last #{@created} at#{timeify}"
+  #end
 
-  def last_week?
-    @expired >= 518400 && @expired <= 1123200
-  end
+  #def last_week?
+  #  @expired >= 518400 && @expired <= 1123200
+  #end
 
   def datetimefiesta
     self.strftime("%b %d, %Y")
