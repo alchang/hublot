@@ -25,7 +25,7 @@ module Hublot
     return today        if is_today?
     return yesterday    if is_yesterday?
     return this_week    if this_week?
-    return last_week    if last_week?
+    #return last_week    if last_week?
     return datetimefiesta
   end
 
@@ -79,7 +79,7 @@ private
   end
 
   def today
-    "Today at#{timeify}"
+    "#{timeify}"
   end
 
   def timeify
@@ -91,7 +91,7 @@ private
   end
 
   def yesterday
-    "Yesterday at#{timeify}"
+    "Yesterday,#{timeify}"
   end
 
   def is_yesterday?
@@ -99,7 +99,7 @@ private
   end
 
   def this_week
-    "#{@created} at#{timeify}"
+    "#{@created},#{timeify}"
   end
 
   def this_week?
@@ -115,6 +115,6 @@ private
   end
 
   def datetimefiesta
-    self.strftime("%A, %B %e at%l:%M%p")
+    self.strftime("%b %d, %Y")
   end
 end
